@@ -1,0 +1,24 @@
+server:
+  port: 8764
+
+spring:
+  application:
+    name: link-control-record
+  profiles:
+    active: test
+
+# API 文档配置信息
+mapway:
+  apidoc:
+    enabled: true
+    url: /doc/*
+    author: 智能家居平台中心
+    copyright: linkapi.ziroom.com
+    title: link平台api
+    subTitle: 智能家居平台中心
+    scans: com.zihome.record.controller
+
+feign:
+  hystrix:
+    enabled: true
+

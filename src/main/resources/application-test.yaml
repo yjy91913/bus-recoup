@@ -1,0 +1,68 @@
+logging:
+  level:
+    org.springframework.web: info
+    root: info
+    com:
+      zihome:
+        record:
+          feign:
+            internal: DEBUG
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://10.16.44.108:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoint:
+    health:
+      show-details: always
+    hystrix:
+      stream:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+spring:
+  datasource:
+    url: jdbc:mysql://10.16.16.106:3306/ai_help?useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=UTF-8&useSSL=false
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: dev_ai
+    password: ziroomdb
+    type: com.alibaba.druid.pool.DruidDataSource
+  kafka:
+    bootstrap-servers: 10.16.44.109:9092
+    consumer:
+      enable-auto-commit: true
+  zipkin:
+    base-url: http://10.16.44.108:9411
+  data:
+    mongodb:
+      uri: mongodb://10.16.24.78:27017/smarthome
+  cloud:
+    stream:
+      bindings:
+        control-resp-input:
+          destination: link-device-control-resp
+          group: link-control-record
+        multiple-control-resp-input:
+          destination: link-device-multiple-control-resp
+          group: link-control-record
+        resp-output:
+          destination: link-control-record-control-resp
+
+feign:
+  darkPortal: http://passport.api.ziroom.com
+  baseInfo: http://baseinfo.t.zihome.com
+
+# elastic-job
+elastic:
+  job:
+    serverLists: 10.16.37.112:3181
+    namespace: elasti-test11
+    baseSleepTimeMilliseconds: 1000
+    maxSleepTimeMilliseconds: 3000
+    maxRetries: 3

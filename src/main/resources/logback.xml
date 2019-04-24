@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <jmxConfigurator/>
+    <!--<property name="log.base" value="/home/www/provider.zihome.com/logs/"/>-->
+
+    <!-- <appender>是<configuration>的子节点，是负责写日志的组件。<appender>有两个必要属性name和class。name指定appender名称，class指定appender的全限定名。 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender"><!-- ConsoleAppender 把日志添加到控制台 -->
+        <!-- 典型的日志pattern -->
+        <encoder><!-- <encoder>：对日志进行格式化 -->
+            <!--<pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>-->
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 综合时间与大小的滚动策略，先按天滚动，文件大于100mb时再按大小滚动 -->
+    <appender name="businessLogFile"
+              class="ch.qos.logback.core.rolling.RollingFileAppender"><!-- 滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件。 -->
+        <file>${log.base}/business.log</file><!-- 被写入的文件名，可以是相对目录，也可以是绝对目录，如果上级目录不存在会自动创建，没有默认值 -->
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"><!-- 当发生滚动时，决定 RollingFileAppender 的行为，涉及文件移动和重命名 -->
+            <fileNamePattern>${log.base}/business-%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"><!--  按时间回滚的同时，按文件大小来回滚 -->
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder><!-- 对记录事件进行格式化 -->
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 错误日志 -->
+    <appender name="errorlogFile" class="ch.qos.logback.core.rolling.RollingFileAppender"><!-- 按log文件最大长度限度生成新文件 -->
+        <file>${log.base}/error.log</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"><!-- 当发生滚动时，决定 RollingFileAppender 的行为，涉及文件移动和重命名 -->
+            <fileNamePattern>${log.base}/error-%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"><!--  按时间回滚的同时，按文件大小来回滚 -->
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--<appender name="gelfFile" class="com.ziroom.common.logging.gelf.logback.GelfLogbackAppender">
+        <host>file:file</host>
+        <retention>1</retention> &lt;!&ndash; retention days of log files &ndash;&gt;
+        <facility>home-api</facility>                  &lt;!&ndash;facility修改成对应的组件名，如没有细分组件可以和appName一致&ndash;&gt;
+        <extractStackTrace>true</extractStackTrace>
+        <filterStackTrace>true</filterStackTrace>
+        <timestampPattern>yyyy-MM-dd HH:mm:ss,SSSS</timestampPattern>
+        <dynamicMdcFields>gelf_dync_.*</dynamicMdcFields>
+        <mdcFields>PtxId,SpanId</mdcFields>
+        <mdcProfiling>true</mdcProfiling>
+        <additionalFields>appName=provider,osArch=${os.arch},osName=${os.name},osVersion=${os.version}
+        </additionalFields>   &lt;!&ndash;appName修改成对应的appName&ndash;&gt;
+    </appender>-->
+
+    <!-- 用来设置打印级别，大小写无关：TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF，不能设置为INHERITED或者同义词NULL。默认是DEBUG  -->
+    <root level="INFO">
+        <appender-ref ref="console"/><!-- 标识这个appender将会添加到这个loger -->
+        <appender-ref ref="businessLogFile"/>
+        <appender-ref ref="errorlogFile"/>
+        <!--<appender-ref ref="gelfFile"/>-->
+    </root>
+</configuration>
