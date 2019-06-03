@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 任务执行器
- * Created by zhoutao on 2016/7/25.
+ * Created by Yangjy on 2018/7/25.
  *
  * @lastModify 无视数据库中的同步异步标志，统一走异步执行 2017/2/5
  */

@@ -1,8 +1,8 @@
 package com.ziroom.busrecoup;
 
 /**
- * @Author by zhout38
- * @Date 2016/6/30  11:04
+ * @Author by Yangjy
+ * @Date 2018/6/30  11:04
  * 补偿任务执行状态枚举
  */
 public enum JobStatusEnum {

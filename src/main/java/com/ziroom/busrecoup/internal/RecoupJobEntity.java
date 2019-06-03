@@ -4,7 +4,7 @@ import com.google.common.base.MoreObjects;
 
 /**
  * 通用业务补偿job实体
- * Created by zhoutao on 2016/7/19.
+ * Created by Yangjy on 2018/6/19.
  */
 public class RecoupJobEntity {
     private long id;

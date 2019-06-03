@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * 业务补偿JOB入口,扩展自Elastic-job,并依赖spring
  * 框架内部使用，外部不需要基础继承
- * Created by zhoutao on 2016/7/18.
+ * Created by Yangjy on 2018/6/27.
  */
 @Component
 public final class RecoupSimpleJob implements SimpleJob {

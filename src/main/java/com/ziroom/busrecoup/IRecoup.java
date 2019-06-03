@@ -2,7 +2,7 @@ package com.ziroom.busrecoup;
 
 /**
  * 补偿业务逻辑接口
- * Created by zhoutao on 2016/7/19.
+ * Created by Yangjy on 2018/7/19.
  */
 public interface IRecoup {
 

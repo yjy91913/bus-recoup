@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * 通用业务补偿job对象针对外部访问使用
- * Created by zhoutao on 2016/7/19.
+ * Created by Yangjy on 2018/7/19.
  */
 @Builder
 @AllArgsConstructor

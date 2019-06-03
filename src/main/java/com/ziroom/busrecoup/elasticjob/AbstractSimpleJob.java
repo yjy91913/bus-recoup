@@ -13,8 +13,8 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 普通定时作业抽象类，提供自动处理分片数据
- * @Author zhoutao
- * @Date 2017/3/7
+ * @Author Yangjy
+ * @Date 2018/6/27
  */
 @Component
 public abstract class AbstractSimpleJob implements SimpleJob {

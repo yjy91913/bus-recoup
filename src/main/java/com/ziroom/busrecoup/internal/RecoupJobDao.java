@@ -15,6 +15,11 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ *
+ * @Author Yangjy
+ * @Date 2018/6/27
+ */
 @Repository
 public class RecoupJobDao {
     @Autowired(required = false)

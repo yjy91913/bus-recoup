@@ -8,8 +8,8 @@ import lombok.ToString;
 /**
  * 任务设置
  *
- * @Author zhoutao
- * @Date 2017/2/27
+ * @Author Yangjy
+ * @Date 2018/6/27
  */
 public class JobConfig {
     private String jobName;
